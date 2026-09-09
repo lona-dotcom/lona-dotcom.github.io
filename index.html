@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Analyst | Portfolio</title>
+    <!-- Font Awesome (icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- Google Fonts (moderne) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ===== THÈMES DU PLUS CLAIR AU PLUS SOMBRE ===== */
+
+        /* Thème 1: Blanc & Or (très clair) */
+        body.theme-1 {
+            background: #f5f0e8;
+            background-image:
+                radial-gradient(circle at 20% 30%, #fff8e8 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #f0e8d8 0%, transparent 50%),
+                linear-gradient(135deg, #f5f0e8 0%, #ede5d8 100%);
+        }
+        body.theme-1 .card {
+            background: rgba(255, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        }
+        body.theme-1 .badge-data { background: rgba(255, 215, 0, 0.12); color: #b8960f; border-color: rgba(255, 215, 0, 0.15); }
+        body.theme-1 .name { color: #1a1a1a; }
+        body.theme-1 .name span { background: linear-gradient(135deg, #b8960f, #d4a017); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        body.theme-1 .title { color: rgba(0, 0, 0, 0.5); }
+        body.theme-1 .title i { color: #b8960f; }
+        body.theme-1 .highlight { color: #b8960f; }
+        body.theme-1 .quote { color: rgba(0, 0, 0, 0.4); border-left-color: rgba(255, 215, 0, 0.3); }
+        body.theme-1 .quote i { color: #b8960f; }
+        body.theme-1 .metric-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-1 .metric-value { color: #1a1a1a; }
+        body.theme-1 .metric-label { color: rgba(0, 0, 0, 0.35); }
+        body.theme-1 .section-title { color: #1a1a1a; }
+        body.theme-1 .section-title i { color: #b8960f; }
+        body.theme-1 .about-text { color: rgba(0, 0, 0, 0.6); }
+        body.theme-1 .about-text strong { color: rgba(0, 0, 0, 0.85); }
+        body.theme-1 .service-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-1 .service-item:hover { background: rgba(0, 0, 0, 0.06); border-color: rgba(0, 0, 0, 0.1); }
+        body.theme-1 .service-item i { color: #b8960f; }
+        body.theme-1 .service-item strong { color: #1a1a1a; }
+        body.theme-1 .service-item span { color: rgba(0, 0, 0, 0.5); }
+        body.theme-1 .hire-btn { background: rgba(255, 215, 0, 0.12); color: #b8960f; border-color: rgba(255, 215, 0, 0.2); }
+        body.theme-1 .hire-btn:hover { background: rgba(255, 215, 0, 0.2); color: #1a1a1a; }
+        body.theme-1 .social-btn { background: rgba(0, 0, 0, 0.04); color: rgba(0, 0, 0, 0.6); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-1 .social-btn:hover { background: rgba(0, 0, 0, 0.08); color: #1a1a1a; border-color: rgba(0, 0, 0, 0.12); }
+        body.theme-1 .footer-text { color: rgba(0, 0, 0, 0.15); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-1 .lang-btn.active { background: rgba(255, 215, 0, 0.28); box-shadow: 0 0 20px rgba(184, 150, 15, 0.2); }
+        body.theme-1 .theme-indicator { background: #b8960f; }
+        body.theme-1 .language-selector { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(184, 150, 15, 0.45); }
+        body.theme-1 .lang-btn { color: #1a1a1a; opacity: 1; filter: none; }
+        body.theme-1 .lang-btn:hover { opacity: 1; filter: none; }
+        body.theme-1 .theme-btn { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(184, 150, 15, 0.45); color: #5f4a00; }
+        body.theme-1 .theme-btn:hover { background: #fff8e1; color: #3f3200; }
+
+        /* Thème 2: Beige & Vert (clair) */
+        body.theme-2 {
+            background: #e8e4dc;
+            background-image:
+                radial-gradient(circle at 30% 20%, #d4e8d4 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, #c8dcc8 0%, transparent 50%),
+                linear-gradient(135deg, #e8e4dc 0%, #dcd8d0 100%);
+        }
+        body.theme-2 .card {
+            background: rgba(248, 244, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+        }
+        body.theme-2 .badge-data { background: rgba(74, 222, 128, 0.12); color: #2d8f4e; border-color: rgba(74, 222, 128, 0.15); }
+        body.theme-2 .name { color: #1a1a1a; }
+        body.theme-2 .name span { background: linear-gradient(135deg, #2d8f4e, #4ade80); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        body.theme-2 .title { color: rgba(0, 0, 0, 0.5); }
+        body.theme-2 .title i { color: #2d8f4e; }
+        body.theme-2 .highlight { color: #2d8f4e; }
+        body.theme-2 .quote { color: rgba(0, 0, 0, 0.4); border-left-color: rgba(74, 222, 128, 0.3); }
+        body.theme-2 .quote i { color: #2d8f4e; }
+        body.theme-2 .metric-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-2 .metric-value { color: #1a1a1a; }
+        body.theme-2 .metric-label { color: rgba(0, 0, 0, 0.35); }
+        body.theme-2 .section-title { color: #1a1a1a; }
+        body.theme-2 .section-title i { color: #2d8f4e; }
+        body.theme-2 .about-text { color: rgba(0, 0, 0, 0.6); }
+        body.theme-2 .about-text strong { color: rgba(0, 0, 0, 0.85); }
+        body.theme-2 .service-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-2 .service-item:hover { background: rgba(0, 0, 0, 0.06); border-color: rgba(0, 0, 0, 0.1); }
+        body.theme-2 .service-item i { color: #2d8f4e; }
+        body.theme-2 .service-item strong { color: #1a1a1a; }
+        body.theme-2 .service-item span { color: rgba(0, 0, 0, 0.5); }
+        body.theme-2 .hire-btn { background: rgba(74, 222, 128, 0.12); color: #2d8f4e; border-color: rgba(74, 222, 128, 0.2); }
+        body.theme-2 .hire-btn:hover { background: rgba(74, 222, 128, 0.2); color: #1a1a1a; }
+        body.theme-2 .social-btn { background: rgba(0, 0, 0, 0.04); color: rgba(0, 0, 0, 0.6); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-2 .social-btn:hover { background: rgba(0, 0, 0, 0.08); color: #1a1a1a; border-color: rgba(0, 0, 0, 0.12); }
+        body.theme-2 .footer-text { color: rgba(0, 0, 0, 0.15); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-2 .lang-btn.active { background: rgba(74, 222, 128, 0.3); box-shadow: 0 0 20px rgba(45, 143, 78, 0.25); }
+        body.theme-2 .theme-indicator { background: #2d8f4e; }
+        body.theme-2 .language-selector { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(45, 143, 78, 0.45); }
+        body.theme-2 .lang-btn { color: #173b25; opacity: 1; filter: none; }
+        body.theme-2 .lang-btn:hover { opacity: 1; filter: none; }
+        body.theme-2 .theme-btn { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(45, 143, 78, 0.45); color: #236b39; }
+        body.theme-2 .theme-btn:hover { background: #e9f8ec; color: #173b25; }
+
+        /* Thème 3: Gris & Bleu (moyen) */
+        body.theme-3 {
+            background: #c8d0d8;
+            background-image:
+                radial-gradient(circle at 20% 40%, #b0c8e0 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, #a0b8d0 0%, transparent 50%),
+                linear-gradient(135deg, #c8d0d8 0%, #bcc4cc 100%);
+        }
+        body.theme-3 .card {
+            background: rgba(232, 236, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(80, 180, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        }
+        body.theme-3 .badge-data { background: rgba(80, 180, 255, 0.12); color: #2a7ab8; border-color: rgba(80, 180, 255, 0.15); }
+        body.theme-3 .name { color: #1a1a2a; }
+        body.theme-3 .name span { background: linear-gradient(135deg, #2a7ab8, #50b4ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        body.theme-3 .title { color: rgba(0, 0, 0, 0.5); }
+        body.theme-3 .title i { color: #2a7ab8; }
+        body.theme-3 .highlight { color: #2a7ab8; }
+        body.theme-3 .quote { color: rgba(0, 0, 0, 0.4); border-left-color: rgba(80, 180, 255, 0.3); }
+        body.theme-3 .quote i { color: #2a7ab8; }
+        body.theme-3 .metric-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-3 .metric-value { color: #1a1a2a; }
+        body.theme-3 .metric-label { color: rgba(0, 0, 0, 0.35); }
+        body.theme-3 .section-title { color: #1a1a2a; }
+        body.theme-3 .section-title i { color: #2a7ab8; }
+        body.theme-3 .about-text { color: rgba(0, 0, 0, 0.6); }
+        body.theme-3 .about-text strong { color: rgba(0, 0, 0, 0.85); }
+        body.theme-3 .service-item { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-3 .service-item:hover { background: rgba(0, 0, 0, 0.06); border-color: rgba(0, 0, 0, 0.1); }
+        body.theme-3 .service-item i { color: #2a7ab8; }
+        body.theme-3 .service-item strong { color: #1a1a2a; }
+        body.theme-3 .service-item span { color: rgba(0, 0, 0, 0.5); }
+        body.theme-3 .hire-btn { background: rgba(80, 180, 255, 0.12); color: #2a7ab8; border-color: rgba(80, 180, 255, 0.2); }
+        body.theme-3 .hire-btn:hover { background: rgba(80, 180, 255, 0.2); color: #1a1a2a; }
+        body.theme-3 .social-btn { background: rgba(0, 0, 0, 0.04); color: rgba(0, 0, 0, 0.6); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-3 .social-btn:hover { background: rgba(0, 0, 0, 0.08); color: #1a1a2a; border-color: rgba(0, 0, 0, 0.12); }
+        body.theme-3 .footer-text { color: rgba(0, 0, 0, 0.15); border-color: rgba(0, 0, 0, 0.06); }
+        body.theme-3 .lang-btn.active { background: rgba(80, 180, 255, 0.3); box-shadow: 0 0 20px rgba(42, 122, 184, 0.25); }
+        body.theme-3 .theme-indicator { background: #2a7ab8; }
+        body.theme-3 .language-selector { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(42, 122, 184, 0.45); }
+        body.theme-3 .lang-btn { color: #17344a; opacity: 1; filter: none; }
+        body.theme-3 .lang-btn:hover { opacity: 1; filter: none; }
+        body.theme-3 .theme-btn { background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(42, 122, 184, 0.45); color: #205d8d; }
+        body.theme-3 .theme-btn:hover { background: #e8f5ff; color: #17344a; }
+
+        /* Thème 4: Violet & Gris (foncé) */
+        body.theme-4 {
+            background: #3a2a4a;
+            background-image:
+                radial-gradient(circle at 40% 30%, #5a3a7a 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, #4a2a6a 0%, transparent 50%),
+                linear-gradient(135deg, #3a2a4a 0%, #2a1a3a 100%);
+        }
+        body.theme-4 .card {
+            background: #1a122a;
+            border: 1px solid rgba(180, 100, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(40, 0, 60, 0.5);
+        }
+        body.theme-4 .badge-data { background: rgba(180, 100, 255, 0.15); color: #b464ff; border-color: rgba(180, 100, 255, 0.2); }
+        body.theme-4 .name { color: #f0e8ff; }
+        body.theme-4 .name span { background: linear-gradient(135deg, #b464ff, #8a4aff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        body.theme-4 .title { color: rgba(255, 255, 255, 0.5); }
+        body.theme-4 .title i { color: #b464ff; }
+        body.theme-4 .highlight { color: #b464ff; }
+        body.theme-4 .quote { color: rgba(255, 255, 255, 0.4); border-left-color: rgba(180, 100, 255, 0.3); }
+        body.theme-4 .quote i { color: #b464ff; }
+        body.theme-4 .metric-item { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.06); }
+        body.theme-4 .metric-value { color: #f0e8ff; }
+        body.theme-4 .metric-label { color: rgba(255, 255, 255, 0.3); }
+        body.theme-4 .section-title { color: #f0e8ff; }
+        body.theme-4 .section-title i { color: #b464ff; }
+        body.theme-4 .about-text { color: rgba(255, 255, 255, 0.6); }
+        body.theme-4 .about-text strong { color: rgba(255, 255, 255, 0.85); }
+        body.theme-4 .service-item { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.06); }
+        body.theme-4 .service-item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.1); }
+        body.theme-4 .service-item i { color: #b464ff; }
+        body.theme-4 .service-item strong { color: #f0e8ff; }
+        body.theme-4 .service-item span { color: rgba(255, 255, 255, 0.5); }
+        body.theme-4 .hire-btn { background: rgba(180, 100, 255, 0.12); color: #b464ff; border-color: rgba(180, 100, 255, 0.2); }
+        body.theme-4 .hire-btn:hover { background: rgba(180, 100, 255, 0.2); color: #f0e8ff; }
+        body.theme-4 .social-btn { background: rgba(255, 255, 255, 0.04); color: rgba(255, 255, 255, 0.6); border-color: rgba(255, 255, 255, 0.06); }
+        body.theme-4 .social-btn:hover { background: rgba(255, 255, 255, 0.08); color: #f0e8ff; border-color: rgba(255, 255, 255, 0.12); }
+        body.theme-4 .footer-text { color: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.04); }
+        body.theme-4 .lang-btn.active { background: rgba(180, 100, 255, 0.15); box-shadow: 0 0 20px rgba(180, 100, 255, 0.15); }
+        body.theme-4 .theme-indicator { background: #b464ff; }
+        body.theme-4 .language-selector { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.1); }
+        body.theme-4 .lang-btn { color: #f0e8ff; opacity: 0.5; filter: grayscale(0.8); }
+        body.theme-4 .lang-btn:hover { opacity: 0.9; filter: grayscale(0); }
+        body.theme-4 .theme-btn { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); }
+        body.theme-4 .theme-btn:hover { background: rgba(255, 255, 255, 0.12); color: #f0e8ff; }
+
+        /* Thème 5: Noir & Rouge (très sombre) */
+        body.theme-5 {
+            background: #0a0505;
+            background-image:
+                radial-gradient(circle at 30% 20%, #2a0a0a 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, #1a0505 0%, transparent 50%),
+                linear-gradient(135deg, #0a0505 0%, #150808 100%);
+        }
+        body.theme-5 .card {
+            background: #0f0808;
+            border: 1px solid rgba(255, 60, 60, 0.12);
+            box-shadow: 0 30px 60px rgba(40, 0, 0, 0.5);
+        }
+        body.theme-5 .badge-data { background: rgba(255, 60, 60, 0.12); color: #ff4444; border-color: rgba(255, 60, 60, 0.15); }
+        body.theme-5 .name { color: #f0e8e8; }
+        body.theme-5 .name span { background: linear-gradient(135deg, #ff4444, #ff6b35); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        body.theme-5 .title { color: rgba(255, 255, 255, 0.4); }
+        body.theme-5 .title i { color: #ff4444; }
+        body.theme-5 .highlight { color: #ff4444; }
+        body.theme-5 .quote { color: rgba(255, 255, 255, 0.3); border-left-color: rgba(255, 60, 60, 0.25); }
+        body.theme-5 .quote i { color: #ff4444; }
+        body.theme-5 .metric-item { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.04); }
+        body.theme-5 .metric-value { color: #f0e8e8; }
+        body.theme-5 .metric-label { color: rgba(255, 255, 255, 0.25); }
+        body.theme-5 .section-title { color: #f0e8e8; }
+        body.theme-5 .section-title i { color: #ff4444; }
+        body.theme-5 .about-text { color: rgba(255, 255, 255, 0.5); }
+        body.theme-5 .about-text strong { color: rgba(255, 255, 255, 0.8); }
+        body.theme-5 .service-item { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.04); }
+        body.theme-5 .service-item:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.08); }
+        body.theme-5 .service-item i { color: #ff4444; }
+        body.theme-5 .service-item strong { color: #f0e8e8; }
+        body.theme-5 .service-item span { color: rgba(255, 255, 255, 0.4); }
+        body.theme-5 .hire-btn { background: rgba(255, 60, 60, 0.10); color: #ff4444; border-color: rgba(255, 60, 60, 0.15); }
+        body.theme-5 .hire-btn:hover { background: rgba(255, 60, 60, 0.18); color: #f0e8e8; }
+        body.theme-5 .social-btn { background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.04); }
+        body.theme-5 .social-btn:hover { background: rgba(255, 255, 255, 0.06); color: #f0e8e8; border-color: rgba(255, 255, 255, 0.08); }
+        body.theme-5 .footer-text { color: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.03); }
+        body.theme-5 .lang-btn.active { background: rgba(255, 60, 60, 0.12); box-shadow: 0 0 20px rgba(255, 60, 60, 0.08); }
+        body.theme-5 .theme-indicator { background: #ff4444; }
+        body.theme-5 .language-selector { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.08); }
+        body.theme-5 .lang-btn { color: #f0e8e8; opacity: 0.4; filter: grayscale(0.9); }
+        body.theme-5 .lang-btn:hover { opacity: 0.8; filter: grayscale(0); }
+        body.theme-5 .theme-btn { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.6); }
+        body.theme-5 .theme-btn:hover { background: rgba(255, 255, 255, 0.10); color: #f0e8e8; }
+
+        body.theme-1 .about-profile { border-color: rgba(184, 150, 15, 0.65); box-shadow: 0 14px 30px rgba(184, 150, 15, 0.2); }
+        body.theme-2 .about-profile { border-color: rgba(45, 143, 78, 0.65); box-shadow: 0 14px 30px rgba(45, 143, 78, 0.2); }
+        body.theme-3 .about-profile { border-color: rgba(42, 122, 184, 0.65); box-shadow: 0 14px 30px rgba(42, 122, 184, 0.2); }
+        body.theme-4 .about-profile { border-color: rgba(180, 100, 255, 0.7); box-shadow: 0 14px 30px rgba(100, 30, 150, 0.35); }
+        body.theme-5 .about-profile { border-color: rgba(255, 68, 68, 0.7); box-shadow: 0 14px 30px rgba(120, 0, 0, 0.35); }
+
+        /* ===== ÉLÉMENTS DATA (courbes décoratives) ===== */
+        body::before {
+            content: "📈";
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.04;
+            bottom: 10%;
+            left: 5%;
+            transform: rotate(-10deg);
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "⎔";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.05;
+            top: 15%;
+            right: 10%;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            z-index: 0;
+        }
+
+        /* ===== CARTE PRINCIPALE ===== */
+        .card {
+            max-width: 860px;
+            width: 100%;
+            border-radius: 2rem;
+            padding: 3rem 2.8rem;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ===== BANNIÈRE SERVICES EN ARRIÈRE-PLAN ===== */
+        .service-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 28rem;
+            overflow: hidden;
+            border-radius: 2rem;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .service-banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 28, 0.3), rgba(8, 15, 28, 0.74) 68%, rgba(8, 15, 28, 0.2) 88%, rgba(8, 15, 28, 0.02) 100%);
+            border-radius: inherit;
+        }
+
+        .service-banner-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            border-radius: inherit;
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity 1.4s ease-in-out, transform 5s ease-out;
+        }
+
+        .service-banner-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .card > *:not(.service-banner) {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== CONTRÔLES EN HAUT ===== */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== NAVIGATION RAPIDE ===== */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.45rem;
+            margin: 0 0 2.2rem;
+            padding: 0.45rem;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 3;
+        }
+
+        .quick-nav a,
+        .section-footer-nav a,
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            border: 1px solid transparent;
+            border-radius: 0.7rem;
+            color: inherit;
+            text-decoration: none;
+            font: 700 0.76rem/1.2 'Inter', sans-serif;
+            letter-spacing: 0.04em;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .quick-nav a {
+            min-height: 2.85rem;
+            padding: 0.55rem 0.45rem;
+            opacity: 0.9;
+        }
+
+        .quick-nav a:hover,
+        .quick-nav a:focus-visible,
+        .quick-nav a.is-active {
+            opacity: 1;
+            transform: translateY(-2px);
+            background: rgba(128, 128, 128, 0.14);
+            border-color: rgba(128, 128, 128, 0.24);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .quick-nav i { font-size: 0.85rem; }
+
+        /* Chaque thème conserve son contraste et sa couleur d'accent. */
+        body.theme-1 .quick-nav,
+        body.theme-1 .section-footer-nav a { border-color: rgba(184, 150, 15, 0.34); background: rgba(255, 215, 0, 0.11); color: #5f4a00; }
+        body.theme-1 .quick-nav a.is-active,
+        body.theme-1 .quick-nav a:hover,
+        body.theme-1 .quick-nav a:focus-visible,
+        body.theme-1 .section-footer-nav a:hover,
+        body.theme-1 .section-footer-nav a:focus-visible,
+        body.theme-1 .back-to-top { background: #fff4c7; border-color: rgba(184, 150, 15, 0.62); color: #5f4a00; box-shadow: 0 8px 24px rgba(184, 150, 15, 0.2); }
+
+        body.theme-2 .quick-nav,
+        body.theme-2 .section-footer-nav a { border-color: rgba(45, 143, 78, 0.34); background: rgba(74, 222, 128, 0.11); color: #236b39; }
+        body.theme-2 .quick-nav a.is-active,
+        body.theme-2 .quick-nav a:hover,
+        body.theme-2 .quick-nav a:focus-visible,
+        body.theme-2 .section-footer-nav a:hover,
+        body.theme-2 .section-footer-nav a:focus-visible,
+        body.theme-2 .back-to-top { background: #e9f8ec; border-color: rgba(45, 143, 78, 0.62); color: #236b39; box-shadow: 0 8px 24px rgba(45, 143, 78, 0.2); }
+
+        body.theme-3 .quick-nav,
+        body.theme-3 .section-footer-nav a { border-color: rgba(42, 122, 184, 0.38); background: rgba(80, 180, 255, 0.13); color: #205d8d; }
+        body.theme-3 .quick-nav a.is-active,
+        body.theme-3 .quick-nav a:hover,
+        body.theme-3 .quick-nav a:focus-visible,
+        body.theme-3 .section-footer-nav a:hover,
+        body.theme-3 .section-footer-nav a:focus-visible,
+        body.theme-3 .back-to-top { background: #e8f5ff; border-color: rgba(42, 122, 184, 0.68); color: #205d8d; box-shadow: 0 8px 24px rgba(42, 122, 184, 0.24); }
+
+        body.theme-4 .quick-nav,
+        body.theme-4 .section-footer-nav a { border-color: rgba(180, 100, 255, 0.42); background: rgba(180, 100, 255, 0.16); color: #f0e8ff; }
+        body.theme-4 .quick-nav a.is-active,
+        body.theme-4 .quick-nav a:hover,
+        body.theme-4 .quick-nav a:focus-visible,
+        body.theme-4 .section-footer-nav a:hover,
+        body.theme-4 .section-footer-nav a:focus-visible,
+        body.theme-4 .back-to-top { background: #5a3a7a; border-color: rgba(210, 155, 255, 0.82); color: #ffffff; box-shadow: 0 8px 26px rgba(180, 100, 255, 0.3); }
+
+        body.theme-5 .quick-nav,
+        body.theme-5 .section-footer-nav a { border-color: rgba(255, 68, 68, 0.42); background: rgba(255, 60, 60, 0.14); color: #ffe1e1; }
+        body.theme-5 .quick-nav a.is-active,
+        body.theme-5 .quick-nav a:hover,
+        body.theme-5 .quick-nav a:focus-visible,
+        body.theme-5 .section-footer-nav a:hover,
+        body.theme-5 .section-footer-nav a:focus-visible,
+        body.theme-5 .back-to-top { background: #5a1717; border-color: rgba(255, 112, 112, 0.84); color: #ffffff; box-shadow: 0 8px 26px rgba(255, 60, 60, 0.28); }
+
+        .section-footer-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin: 0.25rem 0 2.4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-footer-nav a {
+            min-height: 2.75rem;
+            padding: 0.7rem 0.95rem;
+            background: rgba(128, 128, 128, 0.08);
+            border-color: rgba(128, 128, 128, 0.16);
+            opacity: 0.92;
+        }
+
+        .section-footer-nav a:hover,
+        .section-footer-nav a:focus-visible {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            width: 3.2rem;
+            height: 3.2rem;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.72);
+            border-color: rgba(128, 128, 128, 0.3);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(0.75rem);
+        }
+
+        .back-to-top.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover,
+        .back-to-top:focus-visible { transform: translateY(-3px); }
+
+        :focus-visible {
+            outline: 3px solid currentColor;
+            outline-offset: 3px;
+        }
+
+        html { scroll-behavior: smooth; }
+        [id] { scroll-margin-top: 1.5rem; }
+
+        /* ===== SÉLECTEUR DE LANGUE AVEC DRAPEAUX ===== */
+        .language-selector {
+            display: flex;
+            gap: 0.4rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 60px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s ease;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.6rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .lang-btn .flag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.15rem;
+            height: 1.55rem;
+            font-size: 1.45rem;
+            line-height: 1;
+            border-radius: 0.35rem;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .lang-btn:hover .flag,
+        .lang-btn.active .flag {
+            transform: translateY(-2px) scale(1.08);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.32));
+        }
+
+        .lang-btn .lang-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover .lang-label {
+            opacity: 1;
+        }
+
+        .lang-btn.active .lang-label {
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            transform: scale(1.05);
+        }
+
+        /* ===== BOUTON THÈME ===== */
+        .theme-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(6px);
+        }
+
+        .theme-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.6s ease;
+        }
+
+        .theme-btn:hover i {
+            transform: rotate(180deg);
+        }
+
+        .theme-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        /* ===== BADGE "DATA" ===== */
+        .badge-data {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+            transition: all 0.6s ease;
+        }
+
+        .badge-data i {
+            margin-right: 6px;
+        }
+
+        /* ===== NOM & TITRE ===== */
+        .name {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.05em;
+            transition: color 0.6s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .name span {
+            display: inline-block;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 220% 220%;
+            animation: nameGradient 5s ease-in-out infinite;
+        }
+
+        body .name .name-tail {
+            color: inherit;
+            -webkit-text-fill-color: currentColor;
+            background: none;
+            animation: namePulse 3.5s ease-in-out infinite;
+            text-shadow: 0 0 18px currentColor;
+        }
+
+        .name::after {
+            content: "";
+            display: block;
+            width: 4.5rem;
+            height: 0.18rem;
+            margin-top: 0.45rem;
+            border-radius: 1rem;
+            background: currentColor;
+            box-shadow: 0 0 12px currentColor;
+            animation: nameUnderline 2.5s ease-in-out infinite;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.6s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title i {
+            font-size: 0.8rem;
+            transition: color 0.6s ease;
+        }
+
+        /* ===== BOUTON "HIRE ME" ===== */
+        .hire-btn {
+            display: inline-block;
+            padding: 0.6rem 1.6rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hire-btn i {
+            margin-left: 8px;
+            font-size: 0.7rem;
+        }
+
+        .hire-btn:hover {
+            transform: scale(1.03);
+        }
+
+        /* ===== CITATION EN MODE SURBRILLANCE ===== */
+        .quote {
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-left: 6px solid;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 2rem;
+            transition: all 0.6s ease;
+            border-radius: 0 16px 16px 0;
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            z-index: 2;
+        }
+
+        .quote i {
+            margin-right: 12px;
+            font-size: 1.4rem;
+            transition: color 0.6s ease;
+        }
+
+        .quote-author {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            opacity: 0.8;
+            transition: color 0.6s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .quote-author::before {
+            content: "— ";
+            opacity: 0.6;
+        }
+
+        .quote::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0 16px 16px 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.10), rgba(255, 215, 0, 0.02));
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quote > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes quotePulse {
+            0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); }
+            50% { box-shadow: 0 8px 48px rgba(255, 215, 0, 0.15); }
+            100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); }
+        }
+
+        .quote {
+            animation: quotePulse 3s ease-in-out infinite;
+        }
+
+        /* Variantes de couleurs pour la citation selon le thème */
+        body.theme-1 .quote {
+            background: rgba(255, 215, 0, 0.08);
+            border-left-color: #b8960f;
+            color: #1a1a1a;
+        }
+        body.theme-1 .quote i { color: #b8960f; }
+        body.theme-1 .quote-author { color: #1a1a1a; }
+
+        body.theme-2 .quote {
+            background: rgba(74, 222, 128, 0.08);
+            border-left-color: #2d8f4e;
+            color: #1a1a1a;
+        }
+        body.theme-2 .quote i { color: #2d8f4e; }
+        body.theme-2 .quote-author { color: #1a1a1a; }
+
+        body.theme-3 .quote {
+            background: rgba(80, 180, 255, 0.08);
+            border-left-color: #2a7ab8;
+            color: #1a1a2a;
+        }
+        body.theme-3 .quote i { color: #2a7ab8; }
+        body.theme-3 .quote-author { color: #1a1a2a; }
+
+        body.theme-4 .quote {
+            background: rgba(180, 100, 255, 0.10);
+            border-left-color: #b464ff;
+            color: #f0e8ff;
+        }
+        body.theme-4 .quote i { color: #b464ff; }
+        body.theme-4 .quote-author { color: #f0e8ff; }
+
+        body.theme-5 .quote {
+            background: rgba(255, 60, 60, 0.08);
+            border-left-color: #ff4444;
+            color: #f0e8e8;
+        }
+        body.theme-5 .quote i { color: #ff4444; }
+        body.theme-5 .quote-author { color: #f0e8e8; }
+
+        /* ===== GRILLE DE MÉTRIQUES ===== */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 2.8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metric-item {
+            border-radius: 1rem;
+            padding: 0.8rem 0.4rem;
+            text-align: center;
+            transition: all 0.6s ease;
+        }
+
+        .metric-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            transition: color 0.6s ease;
+        }
+
+        .metric-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 2px;
+            transition: color 0.6s ease;
+        }
+
+        /* ===== ABOUT & SERVICES ===== */
+        .section-title {
+            font-weight: 800;
+            font-size: 1.35rem;
+            margin: 3rem 0 1.2rem 0;
+            padding: 0.85rem 0 0.85rem 0.9rem;
+            letter-spacing: 0.025em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.24), 0 5px 14px currentColor;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: color 0.6s ease, transform 0.35s ease, box-shadow 0.35s ease;
+            position: relative;
+            z-index: 2;
+            border-top: 2px solid rgba(128, 128, 128, 0.34);
+            border-left: 0.35rem solid currentColor;
+            border-radius: 0 0.8rem 0.8rem 0;
+            background: linear-gradient(105deg, rgba(128, 128, 128, 0.14), rgba(128, 128, 128, 0.03) 58%, transparent);
+            box-shadow: 0 0.35rem 0 -0.18rem currentColor, 0 0.9rem 1.6rem rgba(0, 0, 0, 0.16);
+            transform: perspective(700px) rotateX(1deg);
+            transform-origin: left center;
+        }
+
+        .section-title:hover {
+            transform: perspective(700px) rotateX(1deg) translateY(-0.15rem);
+            box-shadow: 0 0.4rem 0 -0.16rem currentColor, 0 1.1rem 1.9rem rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 5.5rem;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.9;
+        }
+
+        .section-title::after {
+            margin-left: auto;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            opacity: 0.55;
+        }
+
+        .section-about { margin-top: 3.2rem; }
+        .section-about::after { content: "01"; }
+        .section-services { margin-top: 3.4rem; }
+        .section-services::after { content: "02"; }
+        .section-cta {
+            margin-top: 3.8rem !important;
+            border-top-width: 2px;
+        }
+        .section-cta::after { content: "03"; }
+
+        .section-about,
+        .section-services,
+        .section-cta {
+            min-height: 3.8rem;
+        }
+
+        .section-about + .about-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(10rem, 13rem);
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-about + .about-content .about-text {
+            padding-left: 1rem;
+            border-left: 2px solid rgba(128, 128, 128, 0.3);
+            margin-bottom: 0;
+        }
+
+        .about-profile {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center 25%;
+            border: 0.35rem solid currentColor;
+            border-radius: 1.5rem;
+            display: block;
+            filter: saturate(1.05) contrast(1.03);
+            animation: profileMotion 5s ease-in-out infinite;
+            transition: transform 0.4s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+        }
+
+        .about-profile:hover {
+            animation-play-state: paused;
+            transform: translateY(-0.35rem) rotate(1deg) scale(1.02);
+        }
+
+        .section-services + .services-grid {
+            padding: 1.1rem;
+            border: 2px solid rgba(128, 128, 128, 0.24);
+            border-radius: 1rem;
+        }
+
+        .section-cta + .about-text {
+            padding: 1rem 1.2rem;
+            border: 2px solid rgba(128, 128, 128, 0.24);
+            border-radius: 0.8rem;
+        }
+
+        .section-title i {
+            width: 2.2rem;
+            height: 2.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            border: 2px solid currentColor;
+            border-radius: 0.65rem;
+            box-shadow: 0 0.25rem 0 -0.08rem currentColor, 0 0.55rem 1rem rgba(0, 0, 0, 0.2), inset 0 0 0 2px rgba(255, 255, 255, 0.12);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            transition: color 0.6s ease, transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .section-title:hover i {
+            transform: translateY(-0.12rem) rotate(-3deg);
+            box-shadow: 0 0.3rem 0 -0.08rem currentColor, 0 0.7rem 1.2rem rgba(0, 0, 0, 0.24), inset 0 0 0 2px rgba(255, 255, 255, 0.16);
+        }
+
+        .about-text {
+            font-weight: 300;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.6s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text strong {
+            font-weight: 500;
+            transition: color 0.6s ease;
+        }
+
+        /* ===== SERVICES AVEC LOGOS OUTILS ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-item {
+            border-radius: 1.2rem;
+            padding: 1.4rem 1.2rem 1.2rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .service-item:hover::before {
+            opacity: 1;
+        }
+
+        .service-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.8rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .service-icon-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .service-icon-wrap {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .service-icon-wrap i {
+            margin: 0;
+        }
+
+        .service-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: flex-end;
+        }
+
+        .service-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.55rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .service-badge i {
+            font-size: 0.5rem;
+            margin: 0;
+        }
+
+        .service-item:hover .service-badge {
+            opacity: 1;
+        }
+
+        .service-item strong {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 0.3rem;
+            transition: color 0.6s ease;
+        }
+
+        .service-item .service-desc {
+            font-size: 0.82rem;
+            font-weight: 300;
+            display: block;
+            line-height: 1.5;
+            transition: color 0.6s ease;
+        }
+
+        .service-benefit {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+            margin-top: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .service-benefit {
+            transform: scale(1.02);
+        }
+
+        .tools-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(128, 128, 128, 0.1);
+        }
+
+        .tool-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.65rem;
+            font-weight: 500;
+            padding: 0.3rem 0.75rem 0.3rem 0.5rem;
+            border-radius: 30px;
+            background: rgba(128, 128, 128, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(128, 128, 128, 0.06);
+        }
+
+        .tool-icon i {
+            width: 1.6rem;
+            font-size: 1.6rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .tool-icon:hover {
+            transform: scale(1.05);
+            background: rgba(128, 128, 128, 0.12);
+        }
+
+        /* ===== COULEURS DES SERVICES PAR THÈME ===== */
+        body.theme-1 .service-icon-wrap { background: rgba(255, 215, 0, 0.12); color: #b8960f; }
+        body.theme-1 .service-badge { background: rgba(255, 215, 0, 0.08); color: #b8960f; }
+        body.theme-1 .service-benefit { background: rgba(255, 215, 0, 0.10); color: #b8960f; }
+        body.theme-1 .service-item { border-color: rgba(255, 215, 0, 0.06); background: rgba(255, 215, 0, 0.02); }
+        body.theme-1 .service-item:hover { border-color: rgba(255, 215, 0, 0.25); background: rgba(255, 215, 0, 0.05); }
+        body.theme-1 .service-item::before { background: linear-gradient(135deg, rgba(255, 215, 0, 0.04), transparent); }
+        body.theme-1 .service-item strong { color: #1a1a1a; }
+        body.theme-1 .service-item .service-desc { color: rgba(0, 0, 0, 0.55); }
+        body.theme-1 .tool-icon { background: rgba(255, 215, 0, 0.08); color: #b8960f; border-color: rgba(255, 215, 0, 0.08); }
+        body.theme-1 .tool-icon i { color: #b8960f; }
+
+        body.theme-2 .service-icon-wrap { background: rgba(74, 222, 128, 0.12); color: #2d8f4e; }
+        body.theme-2 .service-badge { background: rgba(74, 222, 128, 0.08); color: #2d8f4e; }
+        body.theme-2 .service-benefit { background: rgba(74, 222, 128, 0.10); color: #2d8f4e; }
+        body.theme-2 .service-item { border-color: rgba(74, 222, 128, 0.06); background: rgba(74, 222, 128, 0.02); }
+        body.theme-2 .service-item:hover { border-color: rgba(74, 222, 128, 0.25); background: rgba(74, 222, 128, 0.05); }
+        body.theme-2 .service-item::before { background: linear-gradient(135deg, rgba(74, 222, 128, 0.04), transparent); }
+        body.theme-2 .service-item strong { color: #1a1a1a; }
+        body.theme-2 .service-item .service-desc { color: rgba(0, 0, 0, 0.55); }
+        body.theme-2 .tool-icon { background: rgba(74, 222, 128, 0.08); color: #2d8f4e; border-color: rgba(74, 222, 128, 0.08); }
+        body.theme-2 .tool-icon i { color: #2d8f4e; }
+
+        body.theme-3 .service-icon-wrap { background: rgba(80, 180, 255, 0.12); color: #2a7ab8; }
+        body.theme-3 .service-badge { background: rgba(80, 180, 255, 0.08); color: #2a7ab8; }
+        body.theme-3 .service-benefit { background: rgba(80, 180, 255, 0.10); color: #2a7ab8; }
+        body.theme-3 .service-item { border-color: rgba(80, 180, 255, 0.06); background: rgba(80, 180, 255, 0.02); }
+        body.theme-3 .service-item:hover { border-color: rgba(80, 180, 255, 0.25); background: rgba(80, 180, 255, 0.05); }
+        body.theme-3 .service-item::before { background: linear-gradient(135deg, rgba(80, 180, 255, 0.04), transparent); }
+        body.theme-3 .service-item strong { color: #1a1a2a; }
+        body.theme-3 .service-item .service-desc { color: rgba(0, 0, 0, 0.55); }
+        body.theme-3 .tool-icon { background: rgba(80, 180, 255, 0.08); color: #2a7ab8; border-color: rgba(80, 180, 255, 0.08); }
+        body.theme-3 .tool-icon i { color: #2a7ab8; }
+
+        body.theme-4 .service-icon-wrap { background: rgba(180, 100, 255, 0.15); color: #b464ff; }
+        body.theme-4 .service-badge { background: rgba(180, 100, 255, 0.10); color: #b464ff; }
+        body.theme-4 .service-benefit { background: rgba(180, 100, 255, 0.12); color: #b464ff; }
+        body.theme-4 .service-item { border-color: rgba(180, 100, 255, 0.06); background: rgba(180, 100, 255, 0.03); }
+        body.theme-4 .service-item:hover { border-color: rgba(180, 100, 255, 0.2); background: rgba(180, 100, 255, 0.06); }
+        body.theme-4 .service-item::before { background: linear-gradient(135deg, rgba(180, 100, 255, 0.05), transparent); }
+        body.theme-4 .service-item strong { color: #f0e8ff; }
+        body.theme-4 .service-item .service-desc { color: rgba(255, 255, 255, 0.5); }
+        body.theme-4 .tool-icon { background: rgba(180, 100, 255, 0.10); color: #b464ff; border-color: rgba(180, 100, 255, 0.08); }
+        body.theme-4 .tool-icon i { color: #b464ff; }
+
+        body.theme-5 .service-icon-wrap { background: rgba(255, 60, 60, 0.12); color: #ff4444; }
+        body.theme-5 .service-badge { background: rgba(255, 60, 60, 0.08); color: #ff4444; }
+        body.theme-5 .service-benefit { background: rgba(255, 60, 60, 0.10); color: #ff4444; }
+        body.theme-5 .service-item { border-color: rgba(255, 60, 60, 0.05); background: rgba(255, 60, 60, 0.02); }
+        body.theme-5 .service-item:hover { border-color: rgba(255, 60, 60, 0.2); background: rgba(255, 60, 60, 0.05); }
+        body.theme-5 .service-item::before { background: linear-gradient(135deg, rgba(255, 60, 60, 0.04), transparent); }
+        body.theme-5 .service-item strong { color: #f0e8e8; }
+        body.theme-5 .service-item .service-desc { color: rgba(255, 255, 255, 0.45); }
+        body.theme-5 .tool-icon { background: rgba(255, 60, 60, 0.08); color: #ff4444; border-color: rgba(255, 60, 60, 0.06); }
+        body.theme-5 .tool-icon i { color: #ff4444; }
+
+        /* Couleurs originales des logos, indépendantes du thème */
+        .service-item:nth-child(1) .tool-icon:nth-child(1) i { color: #f2c811 !important; }
+        .service-item:nth-child(1) .tool-icon:nth-child(2) i { color: #e97627 !important; }
+        .service-item:nth-child(1) .tool-icon:nth-child(3) i { color: #4285f4 !important; }
+        .service-item:nth-child(2) .tool-icon:nth-child(1) i,
+        .service-item:nth-child(3) .tool-icon:nth-child(1) i { color: #3776ab !important; }
+        .service-item:nth-child(2) .tool-icon:nth-child(2) i,
+        .service-item:nth-child(4) .tool-icon:nth-child(1) i { color: #336791 !important; }
+        .service-item:nth-child(2) .tool-icon:nth-child(3) i { color: #017cee !important; }
+        .service-item:nth-child(2) .tool-icon:nth-child(4) i { color: #ff694a !important; }
+        .service-item:nth-child(3) .tool-icon:nth-child(2) i { color: #189fdd !important; }
+        .service-item:nth-child(3) .tool-icon:nth-child(3) i { color: #4051b5 !important; }
+        .service-item:nth-child(4) .tool-icon:nth-child(2) i { color: #5c6bc0 !important; }
+        .service-item:nth-child(4) .tool-icon:nth-child(3) i { color: #336791 !important; }
+        .service-item:nth-child(5) .tool-icon:nth-child(1) i { color: #2f80ed !important; }
+        .service-item:nth-child(5) .tool-icon:nth-child(2) i { color: #6c63ff !important; }
+        .service-item:nth-child(5) .tool-icon:nth-child(3) i { color: #2e7d32 !important; }
+        .service-item:nth-child(6) .tool-icon:nth-child(1) i { color: #607d8b !important; }
+        .service-item:nth-child(6) .tool-icon:nth-child(2) i { color: #00a4ef !important; }
+        .service-item:nth-child(6) .tool-icon:nth-child(3) i { color: #26a69a !important; }
+
+        /* ===== RÉSEAUX SOCIAUX ===== */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
+        }
+
+        .social-btn i {
+            font-size: 1.25rem;
+            width: 1.4rem;
+            text-align: center;
+            filter: brightness(1.15) drop-shadow(0 0 3px currentColor);
+            animation: socialIconGlow 2.8s ease-in-out infinite;
+        }
+
+        .social-btn.github i { color: #24292f; }
+        .social-btn.linkedin i { color: #0a66c2; }
+        .social-btn.mail i { color: #ea4335; }
+        .social-btn.facebook i { color: #1877f2; }
+        .social-btn.x i { color: #111111; }
+        body.theme-4 .social-btn.github i,
+        body.theme-5 .social-btn.github i,
+        body.theme-4 .social-btn.x i,
+        body.theme-5 .social-btn.x i { color: #ffffff; }
+
+        .social-btn:nth-child(2) i { animation-delay: 0.45s; }
+        .social-btn:nth-child(3) i { animation-delay: 0.9s; }
+        .social-btn:nth-child(4) i { animation-delay: 1.35s; }
+        .social-btn:nth-child(5) i { animation-delay: 1.8s; }
+
+        .social-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn.github:hover i { color: #f0f6fc; }
+        .social-btn.linkedin:hover i { color: #0a66c2; }
+        .social-btn.mail:hover i { color: #ea4335; }
+        .social-btn.facebook:hover i { color: #1877f2; }
+        .social-btn.x:hover i { color: #ffffff; }
+
+        @keyframes socialIconGlow {
+            0%, 100% {
+                filter: brightness(1.05) drop-shadow(0 0 2px currentColor);
+            }
+            50% {
+                filter: brightness(1.8) drop-shadow(0 0 9px currentColor);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .social-btn i {
+                animation: none;
+                filter: brightness(1.25) drop-shadow(0 0 4px currentColor);
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-text {
+            margin-top: 2.2rem;
+            font-size: 0.65rem;
+            text-align: center;
+            padding-top: 1.2rem;
+            transition: all 0.6s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 720px) {
+            .card { padding: 2rem 1.5rem; border-radius: 1.5rem; }
+            .service-banner { height: 27rem; border-radius: 1.5rem; }
+            .name { font-size: 2.6rem; }
+            .metrics { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+            .about-text { font-size: 0.9rem; }
+            .section-about + .about-content { grid-template-columns: 1fr; gap: 1.2rem; }
+            .about-profile { width: min(15rem, 70%); margin: 0 auto; }
+            .social-links { flex-direction: column; align-items: stretch; }
+            .social-btn { justify-content: center; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .quick-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 1.8rem; }
+            .section-footer-nav { flex-wrap: wrap; }
+            .section-footer-nav a { flex: 1 1 9rem; }
+            .back-to-top { right: 0.85rem; bottom: 0.85rem; }
+            .language-selector { justify-content: center; width: fit-content; margin: 0 auto; }
+            .theme-btn { justify-content: center; }
+            .lang-btn .lang-label { display: none; }
+            .quote { font-size: 0.95rem; padding: 1rem 1.2rem; }
+            .service-item { padding: 1.2rem 1rem; }
+            .service-item strong { font-size: 0.9rem; }
+            .service-item .service-desc { font-size: 0.78rem; }
+            .service-icon-wrap { width: 38px; height: 38px; font-size: 1.1rem; }
+            .service-badge { font-size: 0.5rem; padding: 0.15rem 0.5rem; }
+            .service-header { flex-wrap: wrap; }
+            .service-badges { justify-content: flex-start; margin-top: 0.2rem; }
+            .tools-used { gap: 0.3rem; }
+            .tool-icon { gap: 0.35rem; font-size: 0.6rem; padding: 0.25rem 0.6rem 0.25rem 0.4rem; }
+            .tool-icon i { width: 1.35rem; font-size: 1.35rem; }
+        }
+
+        @media (max-width: 480px) {
+            .service-banner { height: 26rem; }
+            .name { font-size: 2rem; }
+            .title { font-size: 1rem; flex-wrap: wrap; }
+            .metric-value { font-size: 0.9rem; }
+            .quote { font-size: 0.85rem; padding: 0.8rem 1rem; }
+            .quote-author { font-size: 0.8rem; }
+            .lang-btn { font-size: 1.4rem; padding: 0.2rem 0.5rem; }
+            .lang-btn .lang-label { display: none; }
+            .theme-btn { font-size: 1rem; padding: 0.4rem 0.8rem; }
+            .theme-btn i { font-size: 1rem; }
+            .language-selector { padding: 0.3rem 0.4rem; }
+            .service-item { padding: 1rem 0.8rem; }
+            .service-item strong { font-size: 0.85rem; }
+            .service-item .service-desc { font-size: 0.74rem; }
+            .service-icon-wrap { width: 34px; height: 34px; font-size: 1rem; }
+            .service-benefit { font-size: 0.6rem; padding: 0.2rem 0.7rem; }
+            .tool-icon { gap: 0.3rem; font-size: 0.55rem; padding: 0.2rem 0.5rem 0.2rem 0.35rem; }
+            .tool-icon i { width: 1.2rem; font-size: 1.2rem; }
+        }
+
+        /* ===== ANIMATION ENTRÉE ===== */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes nameGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes namePulse {
+            0%, 100% { opacity: 0.82; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); }
+        }
+
+        @keyframes nameUnderline {
+            0%, 100% { width: 4.5rem; opacity: 0.45; }
+            50% { width: 10rem; opacity: 1; }
+        }
+
+        @keyframes profileMotion {
+            0%, 100% {
+                transform: translateY(0) rotate(-1deg) scale(1);
+                filter: saturate(1.05) contrast(1.03) brightness(1);
+            }
+            50% {
+                transform: translateY(-0.45rem) rotate(1deg) scale(1.025);
+                filter: saturate(1.2) contrast(1.08) brightness(1.08);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .name span,
+            body .name .name-tail,
+            .name::after,
+            .about-profile {
+                animation: none;
+            }
+        }
+
+        .card { animation: fadeUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+    </style>
+</head>
+<body class="theme-3">
+
+    <div class="card" id="profile-top">
+
+        <!-- ===== BANNIÈRE ANIMÉE DES SERVICES ===== -->
+        <div class="service-banner" aria-hidden="true">
+            <div class="service-banner-slide active" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=520&fit=crop');"></div>
+            <div class="service-banner-slide" style="background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&h=520&fit=crop');"></div>
+            <div class="service-banner-slide" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=520&fit=crop');"></div>
+            <div class="service-banner-slide" style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&h=520&fit=crop');"></div>
+            <div class="service-banner-slide" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=520&fit=crop');"></div>
+        </div>
+
+        <!-- ===== CONTROLES EN HAUT ===== -->
+        <div class="controls">
+            <!-- Sélecteur de langue avec drapeaux et labels -->
+            <div class="language-selector">
+                <button class="lang-btn" data-lang="de" onclick="switchLanguage('de')" title="Deutsch" aria-label="Deutsch — Allemagne">
+                    <span class="flag" aria-hidden="true">🇩🇪</span> <span class="lang-label">DE</span>
+                </button>
+                <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')" title="English" aria-label="English — Royaume-Uni">
+                    <span class="flag" aria-hidden="true">🇬🇧</span> <span class="lang-label">EN</span>
+                </button>
+                <button class="lang-btn" data-lang="fr" onclick="switchLanguage('fr')" title="Français" aria-label="Français — France">
+                    <span class="flag" aria-hidden="true">🇫🇷</span> <span class="lang-label">FR</span>
+                </button>
+            </div>
+
+            <!-- Bouton thème -->
+            <button class="theme-btn" onclick="switchTheme()" title="Changer le thème">
+                <i class="fas fa-palette"></i>
+                <span class="theme-indicator"></span>
+            </button>
+        </div>
+
+        <nav class="quick-nav" aria-label="Navigation rapide">
+            <a href="#profile-top" class="is-active"><i class="fas fa-house" aria-hidden="true"></i><span>Accueil</span></a>
+            <a href="#about"><i class="fas fa-user" aria-hidden="true"></i><span>À propos</span></a>
+            <a href="#services"><i class="fas fa-cogs" aria-hidden="true"></i><span>Services</span></a>
+            <a href="#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i><span>Contact</span></a>
+        </nav>
+
+        <!-- Badge Data Analyst -->
+        <div class="badge-data" data-i18n="badge">
+            <i class="fas fa-database"></i> Data Analyst · Portfolio
+        </div>
+
+        <!-- Nom + Prénom (modifié) -->
+        <h1 class="name">
+            <span>LONA</span> <span class="name-tail">DOTCOM</span>
+        </h1>
+
+        <!-- Titre / sous-titre -->
+        <div class="title" data-i18n="title">
+            <i class="fas fa-circle" style="font-size: 0.4rem;"></i>
+            Data Analyst · SQL · Python · Power BI · Tableau
+        </div>
+
+        <!-- Appel à l'action "Hire me" -->
+        <a href="#" class="hire-btn" data-i18n="hire">
+            Prefer contract protection? Hire me on Upwork <i class="fas fa-arrow-right"></i>
+        </a>
+
+        <!-- Citation en mode surbrillance -->
+        <div class="quote" data-i18n="quote">
+            <i class="fas fa-quote-left"></i> <span data-i18n="quote_text">"Les données ne sont que des reflets de la réalité. À vous de les interpréter pour créer de la valeur."</span>
+            <span class="quote-author" data-i18n="quote_author">RAZANAKOTO Lovatahiana</span>
+        </div>
+
+        <!-- Mini KPIs -->
+        <div class="metrics">
+            <div class="metric-item">
+                <div class="metric-value"><span class="highlight">+</span>2</div>
+                <div class="metric-label" data-i18n="metric1">Années d'expérience</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value"><span class="highlight">✓</span> 24h</div>
+                <div class="metric-label" data-i18n="metric2">Délai de réponse</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value"><span class="highlight">🌍</span> Remote</div>
+                <div class="metric-label" data-i18n="metric3">Dans le monde entier</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value"><span class="highlight">DE🇫🇷GB</span> DE/FR/EN</div>
+                <div class="metric-label" data-i18n="metric4">Anglais &amp; Français &amp; Allemand</div>
+            </div>
+        </div>
+
+        <!-- About Me -->
+        <div id="about" class="section-title section-about" data-i18n="about_title">
+            <i class="fas fa-user"></i> About me
+        </div>
+        <div class="about-content">
+            <p class="about-text" data-i18n="about_text">
+                <strong>Data Analyst freelance</strong> depuis 2024, je travaille à distance avec des clients du monde entier depuis <strong>Tamatave (ANTSINANANA), MADAGASCAR</strong>.  
+                Je couvre tout le cycle de vie de la donnée : collecte, nettoyage, analyse exploratoire, modélisation, visualisation et déploiement de tableaux de bord interactifs.  
+                J'utilise principalement <strong>Python (Pandas, NumPy, Scikit-learn)</strong>, <strong>SQL</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>PostgreSQL</strong>, <strong>Excel</strong> et <strong>Datastorytelling</strong>.  
+            </p>
+            <img class="about-profile" src="LONALORAZ.jpeg" alt="Portrait de Lona Dotcom, Data Analyst" loading="lazy">
+        </div>
+        <div class="section-footer-nav" aria-label="Navigation de la section À propos">
+            <a href="#profile-top"><i class="fas fa-arrow-up" aria-hidden="true"></i> Sommaire</a>
+            <a href="#services">Services <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+        <!-- Services / Compétences - Avec logos des outils -->
+        <div id="services" class="section-title section-services" data-i18n="services_title">
+            <i class="fas fa-cogs"></i> Ce que je peux faire pour vous
+        </div>
+
+        <div class="services-grid">
+            <!-- Service 1: Tableaux de bord -->
+            <div class="service-item" data-i18n="service1">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-chart-pie"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-eye"></i> UX</span>
+                        <span class="service-badge"><i class="fas fa-bolt"></i> Interactif</span>
+                    </div>
+                </div>
+                <strong>Des tableaux de bord qui parlent à vos équipes</strong>
+                <span class="service-desc">Je transforme vos données brutes en visualisations claires et interactives, pour que chaque décideur comprenne instantanément les tendances et les opportunités.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fas fa-chart-bar"></i> Power BI</span>
+                    <span class="tool-icon"><i class="fas fa-chart-line"></i> Tableau</span>
+                    <span class="tool-icon"><i class="fas fa-chart-simple"></i> Looker</span>
+                </div>
+                <span class="service-benefit">✅ Décisions éclairées</span>
+            </div>
+
+            <!-- Service 2: Données fiables -->
+            <div class="service-item" data-i18n="service2">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-road"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-clock"></i> 24/7</span>
+                        <span class="service-badge"><i class="fas fa-check-circle"></i> Fiable</span>
+                    </div>
+                </div>
+                <strong>Des données fiables, livrées en continu</strong>
+                <span class="service-desc">J'automatise vos flux de données et je nettoie vos sources pour vous garantir des analyses toujours à jour et exemptes d'erreurs.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fab fa-python"></i> Python</span>
+                    <span class="tool-icon"><i class="fas fa-database"></i> SQL</span>
+                    <span class="tool-icon"><i class="fas fa-rocket"></i> Airflow</span>
+                    <span class="tool-icon"><i class="fas fa-code-branch"></i> dbt</span>
+                </div>
+                <span class="service-benefit">✅ Fiabilité &amp; réactivité</span>
+            </div>
+
+            <!-- Service 3: Modèles prédictifs -->
+            <div class="service-item" data-i18n="service3">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-lightbulb"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-robot"></i> ML</span>
+                        <span class="service-badge"><i class="fas fa-chart-line"></i> Prédictif</span>
+                    </div>
+                </div>
+                <strong>Des modèles prédictifs pour anticiper votre marché</strong>
+                <span class="service-desc">J'utilise le machine learning pour détecter des tendances, prévoir vos ventes et identifier des opportunités avant vos concurrents.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fab fa-python"></i> Scikit-learn</span>
+                    <span class="tool-icon"><i class="fas fa-brain"></i> XGBoost</span>
+                    <span class="tool-icon"><i class="fas fa-chart-scatter"></i> Statsmodels</span>
+                </div>
+                <span class="service-benefit">✅ Avance stratégique</span>
+            </div>
+
+            <!-- Service 4: Infrastructure data -->
+            <div class="service-item" data-i18n="service4">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-code-branch"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-cloud"></i> Scalable</span>
+                        <span class="service-badge"><i class="fas fa-plug"></i> Connecté</span>
+                    </div>
+                </div>
+                <strong>Une infrastructure data solide et scalable</strong>
+                <span class="service-desc">Je conçois et maintiens vos pipelines de données, en connectant vos bases, vos APIs et vos outils préférés, pour une architecture durable.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fas fa-database"></i> PostgreSQL</span>
+                    <span class="tool-icon"><i class="fas fa-code"></i> REST API</span>
+                    <span class="tool-icon"><i class="fas fa-warehouse"></i> Data Warehouse</span>
+                </div>
+                <span class="service-benefit">✅ Performance &amp; pérennité</span>
+            </div>
+
+            <!-- Service 5: Sécurité des données -->
+            <div class="service-item" data-i18n="service5">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-shield-alt"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-lock"></i> Sécurisé</span>
+                        <span class="service-badge"><i class="fas fa-gavel"></i> RGPD</span>
+                    </div>
+                </div>
+                <strong>La sécurité de vos données avant tout</strong>
+                <span class="service-desc">Je mets en place les bonnes pratiques de gouvernance, de confidentialité et de sauvegarde pour que vos données restent protégées.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fas fa-user-shield"></i> Gouvernance</span>
+                    <span class="tool-icon"><i class="fas fa-file-signature"></i> Conformité</span>
+                    <span class="tool-icon"><i class="fas fa-save"></i> Sauvegarde</span>
+                </div>
+                <span class="service-benefit">✅ Conformité &amp; tranquillité</span>
+            </div>
+
+            <!-- Service 6: Accompagnement -->
+            <div class="service-item" data-i18n="service6">
+                <div class="service-header">
+                    <div class="service-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="service-badges">
+                        <span class="service-badge"><i class="fas fa-user-check"></i> Sur-mesure</span>
+                        <span class="service-badge"><i class="fas fa-heart"></i> Bienveillant</span>
+                    </div>
+                </div>
+                <strong>Un accompagnement sur mesure, du besoin à la livraison</strong>
+                <span class="service-desc">Je vous écoute, je comprends votre métier et je vous propose une solution adaptée, avec un suivi personnalisé et une documentation claire.</span>
+                <div class="tools-used">
+                    <span class="tool-icon"><i class="fas fa-file-alt"></i> Documentation</span>
+                    <span class="tool-icon"><i class="fas fa-comments"></i> Support</span>
+                    <span class="tool-icon"><i class="fas fa-sync-alt"></i> Itération</span>
+                </div>
+                <span class="service-benefit">✅ Relation de confiance</span>
+            </div>
+        </div>
+        <div class="section-footer-nav" aria-label="Navigation de la section Services">
+            <a href="#about"><i class="fas fa-arrow-left" aria-hidden="true"></i> À propos</a>
+            <a href="#profile-top"><i class="fas fa-arrow-up" aria-hidden="true"></i> Sommaire</a>
+            <a href="#contact">Contact <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+        <!-- Section "Prêt à collaborer" -->
+        <div id="contact" class="section-title section-cta" data-i18n="cta_title">
+            <i class="fas fa-handshake"></i> Prêt à collaborer ?
+        </div>
+        <p class="about-text" style="margin-bottom: 1rem;" data-i18n="cta_text">
+            Dites-moi ce que vous voulez construire. Je vous répondrai sous 24 heures avec une prochaine étape claire — sans engagement.
+        </p>
+
+        <!-- Liens sociaux -->
+        <div class="social-links">
+            <a href="https://github.com/lona-dotcom" class="social-btn github" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/razanakoto-lovatahiana-nomenjanahary-4060aa2a6/" class="social-btn linkedin" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            <a href="mailto:lonaloraz@gmail.com" class="social-btn mail">
+                <i class="fas fa-envelope"></i> Mail
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61570971295771" class="social-btn facebook" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://x.com/lonaloraz" class="social-btn x" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" title="X (Twitter)">
+                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i> X
+            </a>
+        </div>
+        <div class="section-footer-nav" aria-label="Navigation de la section Contact">
+            <a href="#services"><i class="fas fa-arrow-left" aria-hidden="true"></i> Services</a>
+            <a href="#profile-top"><i class="fas fa-arrow-up" aria-hidden="true"></i> Retour en haut</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+            <i class="fas fa-chart-line"></i> data-driven · 2026
+        </div>
+
+    </div>
+
+    <a class="back-to-top" href="#profile-top" aria-label="Retour en haut" title="Retour en haut">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== GESTION DES THÈMES =====
+        let currentTheme = 3;
+        const maxThemes = 5;
+
+        function switchTheme() {
+            currentTheme = currentTheme % maxThemes + 1;
+            document.body.className = 'theme-' + currentTheme;
+            
+            const icon = document.querySelector('.theme-btn i');
+            icon.style.transform = 'rotate(360deg)';
+            setTimeout(() => { icon.style.transform = ''; }, 600);
+        }
+
+        // ===== BANNIÈRE ANIMÉE DES SERVICES =====
+        const serviceBannerSlides = document.querySelectorAll('.service-banner-slide');
+        let currentServiceBanner = 0;
+
+        function showServiceBanner(index) {
+            serviceBannerSlides.forEach((slide, slideIndex) => {
+                slide.classList.toggle('active', slideIndex === index);
+            });
+        }
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInterval(() => {
+                currentServiceBanner = (currentServiceBanner + 1) % serviceBannerSlides.length;
+                showServiceBanner(currentServiceBanner);
+            }, 5000);
+        }
+
+        // ===== NAVIGATION DE PAGE =====
+        const quickNavLinks = [...document.querySelectorAll('.quick-nav a')];
+        const navigableSections = ['profile-top', 'about', 'services', 'contact']
+            .map((sectionId) => document.getElementById(sectionId));
+        const backToTop = document.querySelector('.back-to-top');
+
+        const updateNavigation = (activeSection) => {
+            quickNavLinks.forEach((link) => {
+                link.classList.toggle('is-active', link.getAttribute('href') === `#${activeSection}`);
+            });
+            backToTop.classList.toggle('is-visible', window.scrollY > 420);
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visibleEntry = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+            if (visibleEntry) updateNavigation(visibleEntry.target.id);
+        }, { rootMargin: '-18% 0px -62% 0px', threshold: [0.1, 0.35, 0.7] });
+
+        navigableSections.forEach((section) => sectionObserver.observe(section));
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('is-visible', window.scrollY > 420);
+        }, { passive: true });
+
+        // ===== DICTIONNAIRE DES TRADUCTIONS =====
+        const translations = {
+            de: {
+                badge: '<i class="fas fa-database"></i> Datenanalyst · Portfolio',
+                title: '<i class="fas fa-circle" style="font-size: 0.4rem;"></i> Datenanalyst · SQL · Python · Power BI · Tableau',
+                hire: 'Bevorzugen Sie Vertragsschutz? Heuern Sie mich auf Upwork an <i class="fas fa-arrow-right"></i>',
+                quote_text: '"Daten sind nur Spiegelbilder der Realität. Es liegt an Ihnen, sie zu interpretieren, um Werte zu schaffen."',
+                quote_author: 'RAZANAKOTO Lovatahiana',
+                metric1: 'Jahre Erfahrung',
+                metric2: 'Antwortzeit',
+                metric3: 'Weltweit remote',
+                metric4: 'Englisch &amp; Französisch',
+                about_title: '<i class="fas fa-user"></i> Über mich',
+                about_text: '<strong>Freiberuflicher Datenanalyst</strong> seit 2021, arbeite ich remote mit Kunden weltweit von <strong>Tamatave (ANTSINANANA), MADAGASKAR</strong> aus. Ich decke den gesamten Datenlebenszyklus ab: Erfassung, Bereinigung, explorative Analyse, Modellierung, Visualisierung und Bereitstellung interaktiver Dashboards. Ich verwende hauptsächlich <strong>Python (Pandas, NumPy, Scikit-learn)</strong>, <strong>SQL</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>PostgreSQL</strong>, <strong>Excel</strong> und <strong>Datastorytelling</strong>.',
+                services_title: '<i class="fas fa-cogs"></i> Was ich für Sie tun kann',
+                service1: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-chart-pie"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-eye"></i> UX</span><span class="service-badge"><i class="fas fa-bolt"></i> Interaktiv</span></div></div><strong>Dashboards, die Ihre Teams begeistern</strong><span class="service-desc">Ich verwandle Ihre Rohdaten in klare, interaktive Visualisierungen, damit jeder Entscheider Trends und Chancen sofort erkennt.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-chart-bar"></i> Power BI</span><span class="tool-icon"><i class="fas fa-chart-line"></i> Tableau</span><span class="tool-icon"><i class="fas fa-chart-simple"></i> Looker</span></div><span class="service-benefit">✅ Fundierte Entscheidungen</span>',
+                service2: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-road"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-clock"></i> 24/7</span><span class="service-badge"><i class="fas fa-check-circle"></i> Zuverlässig</span></div></div><strong>Zuverlässige Daten, kontinuierlich geliefert</strong><span class="service-desc">Ich automatisiere Ihre Datenflüsse und bereinige Ihre Quellen, damit Ihre Analysen immer aktuell und fehlerfrei sind.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Python</span><span class="tool-icon"><i class="fas fa-database"></i> SQL</span><span class="tool-icon"><i class="fas fa-rocket"></i> Airflow</span><span class="tool-icon"><i class="fas fa-code-branch"></i> dbt</span></div><span class="service-benefit">✅ Zuverlässigkeit &amp; Reaktivität</span>',
+                service3: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-lightbulb"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-robot"></i> ML</span><span class="service-badge"><i class="fas fa-chart-line"></i> Prädiktiv</span></div></div><strong>Predictive Modelle, um Ihrem Markt voraus zu sein</strong><span class="service-desc">Ich nutze Machine Learning, um Trends zu erkennen, Umsätze vorherzusagen und Chancen vor Ihren Wettbewerbern zu identifizieren.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Scikit-learn</span><span class="tool-icon"><i class="fas fa-brain"></i> XGBoost</span><span class="tool-icon"><i class="fas fa-chart-scatter"></i> Statsmodels</span></div><span class="service-benefit">✅ Strategischer Vorsprung</span>',
+                service4: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-code-branch"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-cloud"></i> Skalierbar</span><span class="service-badge"><i class="fas fa-plug"></i> Verbunden</span></div></div><strong>Eine robuste und skalierbare Dateninfrastruktur</strong><span class="service-desc">Ich entwerfe und pflege Ihre Datenpipelines, verbinde Ihre Datenbanken, APIs und Tools für eine nachhaltige Architektur.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-database"></i> PostgreSQL</span><span class="tool-icon"><i class="fas fa-code"></i> REST API</span><span class="tool-icon"><i class="fas fa-warehouse"></i> Data Warehouse</span></div><span class="service-benefit">✅ Performance &amp; Nachhaltigkeit</span>',
+                service5: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-shield-alt"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-lock"></i> Sicher</span><span class="service-badge"><i class="fas fa-gavel"></i> DSGVO</span></div></div><strong>Die Sicherheit Ihrer Daten hat Priorität</strong><span class="service-desc">Ich implementiere bewährte Verfahren für Governance, Vertraulichkeit und Backup, damit Ihre Daten geschützt bleiben.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-user-shield"></i> Governance</span><span class="tool-icon"><i class="fas fa-file-signature"></i> Compliance</span><span class="tool-icon"><i class="fas fa-save"></i> Backup</span></div><span class="service-benefit">✅ Konformität &amp; Seelenfrieden</span>',
+                service6: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-user-check"></i> Maßgeschneidert</span><span class="service-badge"><i class="fas fa-heart"></i> Fürsorglich</span></div></div><strong>Maßgeschneiderte Begleitung, von der Idee bis zur Lieferung</strong><span class="service-desc">Ich höre zu, verstehe Ihr Geschäft und biete eine angepasste Lösung mit persönlicher Betreuung und klarer Dokumentation.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-file-alt"></i> Dokumentation</span><span class="tool-icon"><i class="fas fa-comments"></i> Support</span><span class="tool-icon"><i class="fas fa-sync-alt"></i> Iteration</span></div><span class="service-benefit">✅ Vertrauensvolle Beziehung</span>',
+                cta_title: '<i class="fas fa-handshake"></i> Bereit zur Zusammenarbeit?',
+                cta_text: 'Sagen Sie mir, was Sie bauen möchten. Ich werde Ihnen innerhalb von 24 Stunden mit einem klaren nächsten Schritt antworten — unverbindlich.'
+            },
+            en: {
+                badge: '<i class="fas fa-database"></i> Data Analyst · Portfolio',
+                title: '<i class="fas fa-circle" style="font-size: 0.4rem;"></i> Data Analyst · SQL · Python · Power BI · Tableau',
+                hire: 'Prefer contract protection? Hire me on Upwork <i class="fas fa-arrow-right"></i>',
+                quote_text: '"Data are only reflections of reality. It is up to you to interpret them to create value."',
+                quote_author: 'RAZANAKOTO Lovatahiana',
+                metric1: 'Years of experience',
+                metric2: 'Response time',
+                metric3: 'Remote worldwide',
+                metric4: 'English &amp; French',
+                about_title: '<i class="fas fa-user"></i> About me',
+                about_text: '<strong>Freelance Data Analyst</strong> since 2021, working remotely with clients worldwide from <strong>Tamatave (ANTSINANANA), MADAGASCAR</strong>. I cover the complete data lifecycle: collection, cleaning, exploratory analysis, modeling, visualization and deployment of interactive dashboards. I mainly use <strong>Python (Pandas, NumPy, Scikit-learn)</strong>, <strong>SQL</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>PostgreSQL</strong>, <strong>Excel</strong> and <strong>Datastorytelling</strong>.',
+                services_title: '<i class="fas fa-cogs"></i> What I can do for you',
+                service1: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-chart-pie"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-eye"></i> UX</span><span class="service-badge"><i class="fas fa-bolt"></i> Interactive</span></div></div><strong>Dashboards that speak to your teams</strong><span class="service-desc">I transform your raw data into clear, interactive visuals so every decision-maker instantly grasps trends and opportunities.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-chart-bar"></i> Power BI</span><span class="tool-icon"><i class="fas fa-chart-line"></i> Tableau</span><span class="tool-icon"><i class="fas fa-chart-simple"></i> Looker</span></div><span class="service-benefit">✅ Informed decisions</span>',
+                service2: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-road"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-clock"></i> 24/7</span><span class="service-badge"><i class="fas fa-check-circle"></i> Reliable</span></div></div><strong>Reliable data, delivered continuously</strong><span class="service-desc">I automate your data flows and clean your sources to guarantee always up-to-date, error-free analyses.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Python</span><span class="tool-icon"><i class="fas fa-database"></i> SQL</span><span class="tool-icon"><i class="fas fa-rocket"></i> Airflow</span><span class="tool-icon"><i class="fas fa-code-branch"></i> dbt</span></div><span class="service-benefit">✅ Reliability &amp; responsiveness</span>',
+                service3: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-lightbulb"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-robot"></i> ML</span><span class="service-badge"><i class="fas fa-chart-line"></i> Predictive</span></div></div><strong>Predictive models to anticipate your market</strong><span class="service-desc">I use machine learning to detect trends, forecast sales and identify opportunities before your competitors.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Scikit-learn</span><span class="tool-icon"><i class="fas fa-brain"></i> XGBoost</span><span class="tool-icon"><i class="fas fa-chart-scatter"></i> Statsmodels</span></div><span class="service-benefit">✅ Strategic advantage</span>',
+                service4: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-code-branch"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-cloud"></i> Scalable</span><span class="service-badge"><i class="fas fa-plug"></i> Connected</span></div></div><strong>A solid and scalable data infrastructure</strong><span class="service-desc">I design and maintain your data pipelines, connecting your databases, APIs and favorite tools for a sustainable architecture.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-database"></i> PostgreSQL</span><span class="tool-icon"><i class="fas fa-code"></i> REST API</span><span class="tool-icon"><i class="fas fa-warehouse"></i> Data Warehouse</span></div><span class="service-benefit">✅ Performance &amp; longevity</span>',
+                service5: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-shield-alt"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-lock"></i> Secure</span><span class="service-badge"><i class="fas fa-gavel"></i> GDPR</span></div></div><strong>Your data security comes first</strong><span class="service-desc">I implement best practices for governance, confidentiality and backup to keep your data protected.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-user-shield"></i> Governance</span><span class="tool-icon"><i class="fas fa-file-signature"></i> Compliance</span><span class="tool-icon"><i class="fas fa-save"></i> Backup</span></div><span class="service-benefit">✅ Compliance &amp; peace of mind</span>',
+                service6: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-user-check"></i> Tailored</span><span class="service-badge"><i class="fas fa-heart"></i> Caring</span></div></div><strong>Tailored support, from need to delivery</strong><span class="service-desc">I listen to you, understand your business and offer a customized solution with personal follow-up and clear documentation.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-file-alt"></i> Documentation</span><span class="tool-icon"><i class="fas fa-comments"></i> Support</span><span class="tool-icon"><i class="fas fa-sync-alt"></i> Iteration</span></div><span class="service-benefit">✅ Trust-based relationship</span>',
+                cta_title: '<i class="fas fa-handshake"></i> Ready to collaborate?',
+                cta_text: 'Tell me what you want to build. I\'ll come back to you within 24 hours with a clear next step — no obligation.'
+            },
+            fr: {
+                badge: '<i class="fas fa-database"></i> Data Analyst · Portfolio',
+                title: '<i class="fas fa-circle" style="font-size: 0.4rem;"></i> Data Analyst · SQL · Python · Power BI · Tableau',
+                hire: 'Vous préférez une protection contractuelle ? Engagez-moi sur Upwork <i class="fas fa-arrow-right"></i>',
+                quote_text: '"Les données ne sont que des reflets de la réalité. À vous de les interpréter pour créer de la valeur."',
+                quote_author: 'RAZANAKOTO Lovatahiana',
+                metric1: "Années d'expérience",
+                metric2: 'Délai de réponse',
+                metric3: 'Remote dans le monde',
+                metric4: 'Anglais &amp; Français',
+                about_title: '<i class="fas fa-user"></i> À propos de moi',
+                about_text: '<strong>Data Analyst freelance</strong> depuis 2021, je travaille à distance avec des clients du monde entier depuis <strong>Tamatave (ANTSINANANA), MADAGASCAR</strong>. Je couvre tout le cycle de vie de la donnée : collecte, nettoyage, analyse exploratoire, modélisation, visualisation et déploiement de tableaux de bord interactifs. J\'utilise principalement <strong>Python (Pandas, NumPy, Scikit-learn)</strong>, <strong>SQL</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>PostgreSQL</strong>, <strong>Excel</strong> et <strong>Datastorytelling</strong>.',
+                services_title: '<i class="fas fa-cogs"></i> Ce que je peux faire pour vous',
+                service1: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-chart-pie"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-eye"></i> UX</span><span class="service-badge"><i class="fas fa-bolt"></i> Interactif</span></div></div><strong>Des tableaux de bord qui parlent à vos équipes</strong><span class="service-desc">Je transforme vos données brutes en visualisations claires et interactives, pour que chaque décideur comprenne instantanément les tendances et les opportunités.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-chart-bar"></i> Power BI</span><span class="tool-icon"><i class="fas fa-chart-line"></i> Tableau</span><span class="tool-icon"><i class="fas fa-chart-simple"></i> Looker</span></div><span class="service-benefit">✅ Décisions éclairées</span>',
+                service2: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-road"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-clock"></i> 24/7</span><span class="service-badge"><i class="fas fa-check-circle"></i> Fiable</span></div></div><strong>Des données fiables, livrées en continu</strong><span class="service-desc">J\'automatise vos flux de données et je nettoie vos sources pour vous garantir des analyses toujours à jour et exemptes d\'erreurs.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Python</span><span class="tool-icon"><i class="fas fa-database"></i> SQL</span><span class="tool-icon"><i class="fas fa-rocket"></i> Airflow</span><span class="tool-icon"><i class="fas fa-code-branch"></i> dbt</span></div><span class="service-benefit">✅ Fiabilité &amp; réactivité</span>',
+                service3: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-lightbulb"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-robot"></i> ML</span><span class="service-badge"><i class="fas fa-chart-line"></i> Prédictif</span></div></div><strong>Des modèles prédictifs pour anticiper votre marché</strong><span class="service-desc">J\'utilise le machine learning pour détecter des tendances, prévoir vos ventes et identifier des opportunités avant vos concurrents.</span><div class="tools-used"><span class="tool-icon"><i class="fab fa-python"></i> Scikit-learn</span><span class="tool-icon"><i class="fas fa-brain"></i> XGBoost</span><span class="tool-icon"><i class="fas fa-chart-scatter"></i> Statsmodels</span></div><span class="service-benefit">✅ Avance stratégique</span>',
+                service4: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-code-branch"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-cloud"></i> Scalable</span><span class="service-badge"><i class="fas fa-plug"></i> Connecté</span></div></div><strong>Une infrastructure data solide et scalable</strong><span class="service-desc">Je conçois et maintiens vos pipelines de données, en connectant vos bases, vos APIs et vos outils préférés, pour une architecture durable.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-database"></i> PostgreSQL</span><span class="tool-icon"><i class="fas fa-code"></i> REST API</span><span class="tool-icon"><i class="fas fa-warehouse"></i> Data Warehouse</span></div><span class="service-benefit">✅ Performance &amp; pérennité</span>',
+                service5: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-shield-alt"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-lock"></i> Sécurisé</span><span class="service-badge"><i class="fas fa-gavel"></i> RGPD</span></div></div><strong>La sécurité de vos données avant tout</strong><span class="service-desc">Je mets en place les bonnes pratiques de gouvernance, de confidentialité et de sauvegarde pour que vos données restent protégées.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-user-shield"></i> Gouvernance</span><span class="tool-icon"><i class="fas fa-file-signature"></i> Conformité</span><span class="tool-icon"><i class="fas fa-save"></i> Sauvegarde</span></div><span class="service-benefit">✅ Conformité &amp; tranquillité</span>',
+                service6: '<div class="service-header"><div class="service-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div><div class="service-badges"><span class="service-badge"><i class="fas fa-user-check"></i> Sur-mesure</span><span class="service-badge"><i class="fas fa-heart"></i> Bienveillant</span></div></div><strong>Un accompagnement sur mesure, du besoin à la livraison</strong><span class="service-desc">Je vous écoute, je comprends votre métier et je vous propose une solution adaptée, avec un suivi personnalisé et une documentation claire.</span><div class="tools-used"><span class="tool-icon"><i class="fas fa-file-alt"></i> Documentation</span><span class="tool-icon"><i class="fas fa-comments"></i> Support</span><span class="tool-icon"><i class="fas fa-sync-alt"></i> Itération</span></div><span class="service-benefit">✅ Relation de confiance</span>',
+                cta_title: '<i class="fas fa-handshake"></i> Prêt à collaborer ?',
+                cta_text: 'Dites-moi ce que vous voulez construire. Je vous répondrai sous 24 heures avec une prochaine étape claire — sans engagement.'
+            }
+        };
+
+        // ===== FONCTION DE CHANGEMENT DE LANGUE =====
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const t = translations[lang];
+            if (!t) return;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+        }
+    </script>
+
+</body>
+</html>
